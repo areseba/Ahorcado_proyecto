@@ -87,4 +87,35 @@ class HangmanGame:
                 self.errors += 1
     
                 return False
+
+    def is_lost(self):
+        """Comprobamos si el jugador agotó sus intentos.
+        Retornamos:
+            booleano: True si alcanzó el máximo de errores; False en caso contrario.
+        """
+        return self.errors == self.max_errors
+
+    def is_won(self):
+        """Comprobamos si el jugador descubrió todas las letras del título.
+        Retornamos:
+            booleano: True si todas las letras fueron descubiertas; False si falta alguna.
+        """
+        # Recorremos todos los caracteres del título.
+        for letter in self.word:
+
+            # Ignoramos espacios y otros caracteres que no sean letras.
+            if (letter.isalpha() and normalize_letter(letter) not in self.guessed_letters):
+                return False
+
+        # Si no quedan letras pendientes, el jugador ganó la partida.
+        return True
+
+    def display_guessed_letters(self):
+        """Muostramos todas las letras ingresadas por el jugador."""
+        print("Letras ingresadas:", ", ".join(self.attempted_letters))
+
+    def display_attempts(self):
+        """Mostramos la cantidad de intentos restantes."""
+        attempts_left = self.max_errors - self.errors
+        print("Intentos restantes:", attempts_left)
         
