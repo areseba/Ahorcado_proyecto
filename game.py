@@ -57,4 +57,34 @@ class HangmanGame:
 
         # Imprimimos el progreso actual de la película.
         print(progress)
+
+    def process_guess(self, letter):
+            """Procesamos una letra y actualizamos el estado de la partida.
+            Pasamos como argumento:
+                letter (es un string): Letra ingresada por el jugador.
+            Retornamos:
+                booleano: True si la letra está en la película; False en caso contrario.
+            """
+            # Normalizamos la letra ingresada.
+            normalized_letter = normalize_letter(letter)
+    
+            # Normalizamos el título completo para comparar sin tildes.
+            normalized_word = normalize_letter(self.word)
+    
+            # Guardamos todas las letras ingresadas por el jugador.
+            self.attempted_letters.append(normalized_letter)
+    
+            # Comprobamos si la letra aparece en el título.
+            if normalized_letter in normalized_word:
+    
+                # Guardamos la letra correcta.
+                self.guessed_letters.append(normalized_letter)
+    
+                return True
+    
+            else:
+                # Incrementamos el contador cuando la letra es incorrecta.
+                self.errors += 1
+    
+                return False
         
