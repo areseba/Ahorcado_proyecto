@@ -16,3 +16,33 @@ print(len(word))
 # La película seleccionada será la palabra que debe adivinar el jugador.
 game = HangmanGame(word)
 
+# Bucle: continúa mientras la partida no termine.
+while True:
+
+    # Solicitamos una letra y la convertimos a minúscul.
+    letter = input("Ingresa una letra: ").lower()
+
+    # Comprobamos que el jugador haya ingresado un solo carácter.
+    if len(letter) != 1:
+        print("Debes ingresar una sola letra.")
+        continue
+
+    # Comprobamos que el carácter ingresado sea una letra.
+    if not letter.isalpha():
+        print("Debes ingresar una letra.")
+        continue
+
+    # Evitamos que el jugador ingrese una letra que ya utilizada�.
+    if letter in game.guessed_letters:
+        print("Ya ingresaste esa letra.")
+        continue
+
+    # Procesamos la letra y actualizamos el estado de la partida.
+    result = game.process_guess(letter)
+
+    # Informamos si la letra está presente en la película.
+    if result:
+        print("¡Correcto!")
+    else:
+        print("Letra incorrecta.")
+
