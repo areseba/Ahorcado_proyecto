@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Módulo para cargar películas desde el archivo de texto y elegimos una al azar."""
+"""Módulo para cargar películas desde el archivo y elegimos una al azar."""
 
 import random
 
