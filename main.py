@@ -5,7 +5,7 @@
 from utils import get_random_word
 
 # Importamos la clase que contiene la lógica del juego.
-from game import HangmanGame
+from game import HangmanGame, normalize_letter
 
 
 word = get_random_word(filename="wordlist.txt")
@@ -35,8 +35,8 @@ while True:
         print("Debes ingresar una letra.")
         continue
 
-    # Evitamos que el jugador ingrese una letra que ya utilizada�.
-    if letter in game.guessed_letters:
+    # Evitamos que el jugador repita una letra ya ingresada.
+    if normalize_letter(letter) in game.attempted_letters:
         print("Ya ingresaste esa letra.")
         continue
 
