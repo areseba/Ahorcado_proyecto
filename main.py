@@ -9,12 +9,15 @@ from game import HangmanGame
 
 
 word = get_random_word(filename="wordlist.txt")
-print(word)
-print(len(word))
 
 # Creamos una instancia de la clase HangmanGame.
 # La película seleccionada será la palabra que debe adivinar el jugador.
 game = HangmanGame(word)
+
+# Mostramos el progreso inicial de la película oculta.
+game.display_progress()
+game.display_guessed_letters()
+game.display_attempts()
 
 # Bucle: continúa mientras la partida no termine.
 while True:
@@ -32,7 +35,7 @@ while True:
         print("Debes ingresar una letra.")
         continue
 
-    # Evitamos que el jugador ingrese una letra que ya utilizada�.
+    # Evitamos que el jugador ingrese una letra que ya utilizada�.
     if letter in game.guessed_letters:
         print("Ya ingresaste esa letra.")
         continue
@@ -46,3 +49,22 @@ while True:
     else:
         print("Letra incorrecta.")
 
+    # Mostramos las letras descubiertas y las que permanecen ocultas.
+    game.display_progress()
+
+    # Mostramos las letras ingresadas.
+    game.display_guessed_letters()
+
+    # Mostramos los intentos restantes.
+    game.display_attempts()
+
+    # Comprobamos si el jugador descubrió todas las letras.
+    if game.is_won():
+        print("¡Ganaste!")
+        break
+
+    # Comprobamos si el jugador agotó todos sus intentos.
+    if game.is_lost():
+        print("¡Perdiste!")
+        print("La película era:", word)
+        break
